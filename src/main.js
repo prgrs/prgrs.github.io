@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import firebase from 'firebase'
+import VueDarkMode from "@growthbunker/vuedarkmode";
+
+Vue.use(VueDarkMode);
 
 require("firebase/firestore");
 

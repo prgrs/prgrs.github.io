@@ -1,14 +1,16 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <h2>
-				{{ title }}
-      </h2>
-      <p>
-				On {{ identifier }} {{ currentProgress }} / {{ total }}
-      </p>
+      <h4>
+        {{ title }}
+      </h4>
+      <div class="row mx-auto">
+        <gb-icon name="bookmark" color="#a9c7df" size="24px" style="margin-right:8px;" />
+        <p>On {{ identifier }} {{ currentProgress }} / {{ total }}</p>
+      </div>
+      <gb-divider margin="1.5rem 0"></gb-divider>
       <vue-circle
-				:progress="progress"
+        :progress="percentage"
         :size="200"
         :reverse="false"
         line-cap="round"
@@ -19,8 +21,6 @@
         insert-mode="append"
         :thickness="5"
         :show-percent="true"
-        @vue-circle-progress="progress"
-        @vue-circle-end="progress_end"
       >
       </vue-circle>
     </div>
@@ -31,32 +31,44 @@
 import VueCircle from "vue2-circle-progress";
 
 export default {
-  name: "Progress",
+  name: "ProgressCard",
   components: {
     VueCircle
   },
-	props: {
-		title: String,
-		identifier: String, // month, week etc.
-		currentProgress: String,
-		total: String,
-		percent: String,
-	},
+  props: {
+    title: String,
+    identifier: String, // month, week etc.
+    currentProgress: String,
+    total: String,
+    percent: Number,
+    colors: Array
+  },
   data() {
     return {
-      fill: { gradient: ["#8E2DE2", "#4A00E0"] },
-			progress: this.percent
+      fill: { gradient: this.colors },
+      percentage: this.percent
     };
   }
-}
-
+};
 </script>
 
 <style scoped="">
+h4,
+p {
+  text-align: left;
+}
+
+p {
+  color: #a9c7df;
+}
+
 .card {
-  width: 20rem;
+  width: 19rem;
   border-radius: 12px;
-  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
-  margin: auto;
+  border: 2px solid #313d4f;
+  box-shadow: 0 6px 10px -4px #18191a88;
+  margin: 1rem;
+  color: #fff;
+  background: #171e29;
 }
 </style>
