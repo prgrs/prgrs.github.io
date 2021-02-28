@@ -7,7 +7,6 @@ import VueDarkMode from "@growthbunker/vuedarkmode";
 
 Vue.use(VueDarkMode);
 
-require("firebase/firestore");
 
 var firebaseConfig = {
 	apiKey: "AIzaSyDVLyS1JKeeUbB46lSspm3559RYvA_SmFk",
@@ -22,14 +21,9 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-var db = firebase.firestore();
+var db = firebase.database();
 
 window.db = db; // to access from anywhere
-
-db.settings({
-	timestampsInSnapshots: true
-});
-
 
 Vue.config.productionTip = false
 
