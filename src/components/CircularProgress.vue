@@ -5,7 +5,12 @@
         {{ title }}
       </h4>
       <div class="row mx-auto">
-        <gb-icon name="bookmark" color="#a9c7df" size="24px" style="margin-right:8px;" />
+        <gb-icon
+          name="bookmark"
+          color="#a9c7df"
+          size="24px"
+          style="margin-right:8px;"
+        />
         <p>On {{ identifier }} {{ currentProgress }} / {{ total }}</p>
       </div>
       <gb-divider margin="1.5rem 0"></gb-divider>
@@ -36,17 +41,25 @@ export default {
     VueCircle
   },
   props: {
+//		percentage: Number,
     title: String,
     identifier: String, // month, week etc.
     currentProgress: String,
     total: String,
-    percent: Number,
     colors: Array
   },
+  methods: {
+    getPercentage() {
+			console.log(((this.progress / this.total) * 100) | 0);
+      return ((this.progress / this.total) * 100) | 0;
+    }
+  },
+	created() {
+		this.percentage = this.getPercentage();
+	},
   data() {
     return {
       fill: { gradient: this.colors },
-      percentage: this.percent
     };
   }
 };
