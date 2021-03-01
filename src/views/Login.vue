@@ -3,7 +3,7 @@
     <p>
       Please Login with your Google account to continue
     </p>
-		<gb-button color="white" size="medium" @click="login"
+    <gb-button color="white" size="medium" @click="login"
       >Login with Google</gb-button
     >
   </div>
@@ -27,14 +27,14 @@ export default {
           var token = credential.accessToken;
           // The signed-in user info.
           var user = result.user;
-					// FIXME: debug
+          // FIXME: debug
           console.log(user);
           console.log(user.displayName);
           console.log(user.email);
           console.log(user.uid);
-					this.addUserToDB(user);
+          this.addUserToDB(user);
 
-					this.$router.push('/');
+          this.$router.push("/");
         })
         .catch(error => {
           var errorCode = error.code;
@@ -49,18 +49,25 @@ export default {
           console.log(credential);
         });
     },
-    addUserToDB(user) {
-      db.ref("users/" + user.uid)
-        .set({
+    setUserData(user, ref) {
+      ref .set({
           mail: user.email,
-          name: user.displayName,
+          name: user.displayName
         })
-				.then(() => {
+        .then(() => {
           console.log("Success");
         })
         .catch(() => {
           console.error("Error");
         });
+    },
+    addUserToDB(user) {
+      var ref = db.ref("users/" + user.uid);
+			ref.once("value").then((snaphsot) => {
+        if (!snaphsot.exists()) { // if user not already registered
+          this.setUserData(user, ref);
+        }
+      });
     }
   }
 };
