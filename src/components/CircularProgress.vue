@@ -1,29 +1,33 @@
 <template>
   <div
-		@mouseover="activateButton = true"
-		@mouseleave="activateButton = false"
+    @mouseover="activateButton = true"
+    @mouseleave="activateButton = false"
     class="card"
   >
     <div class="card-body">
       <h4>
         {{ title }}
       </h4>
-      <gb-button
-        v-show="activateButton"
-        class="close"
-        left-icon="close"
-        size="nano"
-        color="red"
-        :circular="true"
-      />
-      <gb-button
-        v-show="activateButton"
-        class="edit"
-        left-icon="edit"
-        size="nano"
-        color="orange"
-        :circular="true"
-      />
+      <transition name="fade">
+        <gb-button
+          v-show="activateButton"
+          class="close"
+          left-icon="close"
+          size="nano"
+          color="red"
+          :circular="true"
+        />
+      </transition>
+      <transition name="fade">
+        <gb-button
+          v-show="activateButton"
+          class="edit"
+          left-icon="edit"
+          size="nano"
+          color="orange"
+          :circular="true"
+        />
+      </transition>
       <div class="row mx-auto">
         <gb-icon
           name="bookmark"
@@ -113,5 +117,13 @@ p {
   right: 1rem;
   top: 1rem;
   position: absolute;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
