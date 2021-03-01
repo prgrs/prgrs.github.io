@@ -1,9 +1,29 @@
 <template>
-  <div class="card">
+  <div
+		@mouseover="activateButton = true"
+		@mouseleave="activateButton = false"
+    class="card"
+  >
     <div class="card-body">
       <h4>
         {{ title }}
       </h4>
+      <gb-button
+        v-show="activateButton"
+        class="close"
+        left-icon="close"
+        size="nano"
+        color="red"
+        :circular="true"
+      />
+      <gb-button
+        v-show="activateButton"
+        class="edit"
+        left-icon="edit"
+        size="nano"
+        color="orange"
+        :circular="true"
+      />
       <div class="row mx-auto">
         <gb-icon
           name="bookmark"
@@ -41,24 +61,25 @@ export default {
     VueCircle
   },
   props: {
-//		percentage: Number,
+    //		percentage: Number,
     title: String,
-    identifier: String, // month, week etc.
+    identifier: String,
     currentProgress: String,
     total: String,
     colors: Array
   },
   methods: {
     getPercentage() {
-			return ((this.currentProgress / this.total) * 100) | 0;
+      return ((this.currentProgress / this.total) * 100) | 0;
     }
   },
-	created() {
-		this.percentage = this.getPercentage();
-	},
+  created() {
+    this.percentage = this.getPercentage();
+  },
   data() {
     return {
       fill: { gradient: this.colors },
+      activateButton: false
     };
   }
 };
@@ -82,5 +103,15 @@ p {
   margin: 1rem;
   color: #fff;
   background: #171e29;
+}
+.edit {
+  right: 3rem;
+  top: 1rem;
+  position: absolute;
+}
+.close {
+  right: 1rem;
+  top: 1rem;
+  position: absolute;
 }
 </style>
