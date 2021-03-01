@@ -50,8 +50,7 @@ export default {
   },
   methods: {
     getPercentage() {
-			console.log(((this.progress / this.total) * 100) | 0);
-      return ((this.progress / this.total) * 100) | 0;
+			return ((this.currentProgress / this.total) * 100) | 0;
     }
   },
 	created() {
