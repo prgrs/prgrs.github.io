@@ -3,7 +3,7 @@
     <p>
       Please Login with your Google account to continue
     </p>
-    <gb-button color="white" size="medium" @click="login"
+    <gb-button class="m-3" color="white" size="medium" @click="login"
       >Login with Google</gb-button
     >
   </div>
@@ -28,10 +28,6 @@ export default {
           // The signed-in user info.
           var user = result.user;
           // FIXME: debug
-          console.log(user);
-          console.log(user.displayName);
-          console.log(user.email);
-          console.log(user.uid);
           this.addUserToDB(user);
 
           this.$router.push("/");
@@ -43,22 +39,18 @@ export default {
           var email = error.email;
           // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
-          console.log(errorCode);
-          console.log(errorMessage);
-          console.log(email);
-          console.log(credential);
         });
     },
     setUserData(user, ref) {
-      ref .set({
+      ref.set({
           mail: user.email,
           name: user.displayName
         })
         .then(() => {
-          console.log("Success");
+          //console.log("Success");
         })
         .catch(() => {
-          console.error("Error");
+          //console.error("Error");
         });
     },
     addUserToDB(user) {

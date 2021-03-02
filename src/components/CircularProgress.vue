@@ -6,10 +6,12 @@
   >
     <div class="card-body">
       <h4>
-        {{ title }}
+        {{ card.title }}
       </h4>
       <transition name="fade">
         <gb-button
+					v-if="editable"
+          @click="$emit('delete', card.id)"
           v-show="activateButton"
           class="close"
           left-icon="close"
@@ -20,6 +22,8 @@
       </transition>
       <transition name="fade">
         <gb-button
+					v-if="editable"
+          @click="editClicked"
           v-show="activateButton"
           class="edit"
           left-icon="edit"
@@ -35,7 +39,7 @@
           size="24px"
           style="margin-right:8px;"
         />
-        <p>On {{ identifier }} {{ currentProgress }} / {{ total }}</p>
+        <p>On {{ card.identifier }} {{ card.progress }} / {{ card.total }}</p>
       </div>
       <gb-divider margin="1.5rem 0"></gb-divider>
       <vue-circle
@@ -65,25 +69,32 @@ export default {
     VueCircle
   },
   props: {
-    //		percentage: Number,
-    title: String,
-    identifier: String,
-    currentProgress: String,
-    total: String,
-    colors: Array
+    //    percentage: Number,
+    card: {
+      id: String,
+      title: String,
+      identifier: String,
+      progress: String,
+      total: String,
+      colors: Array,
+    },
+		editable: Boolean
   },
   methods: {
-    getPercentage() {
-      return ((this.currentProgress / this.total) * 100) | 0;
+    editClicked() {
+      this.$emit("edit", this.card);
+    },
+    updatePercentage() {
+      this.percentage = ((this.card.progress / this.card.total) * 100) | 0;
     }
   },
   created() {
-    this.percentage = this.getPercentage();
+    this.updatePercentage();
   },
   data() {
     return {
-      fill: { gradient: this.colors },
-      activateButton: false
+      fill: { gradient: this.card.colors },
+      activateButton: false,
     };
   }
 };
@@ -109,13 +120,15 @@ p {
   background: #171e29;
 }
 .edit {
+  z-index: 2;
   right: 3rem;
-  top: 1rem;
+  bottom: 1rem;
   position: absolute;
 }
 .close {
+  z-index: 2;
   right: 1rem;
-  top: 1rem;
+  bottom: 1rem;
   position: absolute;
 }
 .fade-enter-active,
