@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     getUrl() {
-      return window.location.host + "/u/" + this.id;
+      return "/u/" + this.id;
     }
   },
   created() {
