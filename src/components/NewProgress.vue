@@ -44,7 +44,7 @@
       </div>
       <gb-divider margin="1.5rem 0"></gb-divider>
       <vue-circle
-				ref="vueCircleUniqeId"
+        ref="vueCircleUniqeId"
         :progress="percentage"
         :size="200"
         :reverse="false"
@@ -59,9 +59,9 @@
       >
       </vue-circle>
       <gb-button
-				size="mini"
+        size="mini"
         :style="colorStyle"
-				@click="colorClicked"
+        @click="colorClicked"
         color="black"
         class="button-color"
         :circular="true"
@@ -116,11 +116,7 @@ export default {
     card: Object
   },
   methods: {
-		colorClicked() {
-			this.randomColor();
-      //console.log(this.card.colors);
-			this.updateColor();
-			this.updateProgress();
+		updateColorPickerBg() {
       this.colorStyle =
         "background-image: linear-gradient(to bottom right," +
         this.card.colors[0] +
@@ -128,17 +124,24 @@ export default {
         this.card.colors[1] +
         ")";
 		},
+    colorClicked() {
+      this.randomColor();
+      //console.log(this.card.colors);
+      this.updateColor();
+      this.updateProgress();
+			this.updateColorPickerBg();
+    },
     randomColor() {
-      this.card.colors = 
+      this.card.colors =
         gradients[Math.floor(Math.random() * gradients.length)];
     },
     updateColor() {
-			this.$refs["vueCircleUniqeId"].updateFill({ gradient: this.card.colors });
+      this.$refs["vueCircleUniqeId"].updateFill({ gradient: this.card.colors });
     },
     updateProgress() {
       this.updatePercentage();
-			this.$refs["vueCircleUniqeId"].updateProgress(this.percentage);
-			this.updateColor();
+      this.$refs["vueCircleUniqeId"].updateProgress(this.percentage);
+      this.updateColor();
     },
     progChanged(value, name, event) {
       this.card.progress = String(value);
@@ -181,7 +184,10 @@ export default {
   },
   created() {
     this.updatePercentage();
-  //  this.randomColor();
+    if (!this.card.id) {
+      this.randomColor();
+    }
+		this.updateColorPickerBg();
   },
   data() {
     return {

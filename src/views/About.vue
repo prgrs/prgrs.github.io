@@ -5,7 +5,7 @@
     <div v-if="ready">
       <p>Your public profile url:</p>
       <div>
-        <a id="url" :href="getUrl()"> https://prgrs.herokuapp.com/{{ getUrl() }}</a>
+        <a id="url" :href="getUrl()"> https://prgrs.herokuapp.com{{ getUrl() }}</a>
       </div>
       <gb-button
         class="m-3"
