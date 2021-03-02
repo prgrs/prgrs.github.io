@@ -4,8 +4,10 @@ import router from './router'
 import store from './store'
 import firebase from 'firebase'
 import VueDarkMode from "@growthbunker/vuedarkmode";
+import Vuelidate from "vuelidate";
 
 Vue.use(VueDarkMode);
+Vue.use(Vuelidate);
 
 
 var firebaseConfig = {
