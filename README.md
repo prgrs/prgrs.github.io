@@ -1,6 +1,6 @@
 # Progress
 
-[![Heroku](https://heroku-badge.herokuapp.com/?app=prgrs&style=flat)]
+![Heroku](https://heroku-badge.herokuapp.com/?app=prgrs&style=flat)
 
 A web-app to track and share your progress.
 
