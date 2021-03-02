@@ -1,12 +1,12 @@
 # Progress
 
-[![Heroku](https://heroku-badge.herokuapp.com/?app=prgrs&style=flat)
+[![Heroku](https://heroku-badge.herokuapp.com/?app=prgrs&style=flat)]
 
 A web-app to track and share your progress.
 
-Project is available at https://prgrs.herokuapp.com/about
+Project is available at https://prgrs.herokuapp.com
 
-## Home Page
+## Home page
 
 ![home](./img/home.png)
 
