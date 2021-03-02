@@ -60,3 +60,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.hidden {
+  width: 19rem;
+  margin: 1rem;
+}
+</style>
