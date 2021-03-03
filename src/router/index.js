@@ -15,7 +15,7 @@ const routes =
 
       },
       {
-				path : '/u/:userid',
+				path : '/u',
 				name: 'Dashboard',
         component : function() { return import('../views/UserBoard.vue'); }
       },

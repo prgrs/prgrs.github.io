@@ -27,7 +27,7 @@ export default {
     return {
       list: [],
       displayName: "",
-      userUid: this.$route.params.userid
+      userUid: ""
     };
   },
   methods: {
@@ -55,6 +55,10 @@ export default {
     }
   },
   created() {
+    const urlParams = new URLSearchParams(window.location.search);
+    this.userUid = urlParams.get("id");
+    console.log(urlParams);
+    console.log(this.userUid);
     this.setDisplayName();
     this.fetchData();
   }
