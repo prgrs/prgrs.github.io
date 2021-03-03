@@ -5,7 +5,7 @@
     <div v-if="ready">
       <p>Your public profile url:</p>
       <div>
-        <a id="url" :href="getUrl()"> https://prgrs.herokuapp.com{{ getUrl() }}</a>
+        <a id="url" :href="getUrl()"> https://prgrs.github.io{{ getUrl() }}</a>
       </div>
       <gb-button
         class="m-3"
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     getUrl() {
-      return "/u/" + this.id;
+      return "/u?id=" + this.id;
     }
   },
   created() {
