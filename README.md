@@ -1,10 +1,10 @@
 # Progress
 
-![Heroku](https://heroku-badge.herokuapp.com/?app=prgrs&style=flat)
+[![Website prgrs.github.io](https://img.shields.io/website-up-down-green-red/http/prgrs.github.io.svg)](http://prgrs.github.io/)
 
 A web-app to track and share your progress.
 
-Project is available at https://prgrs.herokuapp.com
+Project is available at https://prgrs.github.io
 
 ## Home page
 
